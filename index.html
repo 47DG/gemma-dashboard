@@ -142,11 +142,11 @@
             background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
         }
         
-        .key-metrics-section {
+        .stly-section {
             padding: 40px;
-            background: white;
+            background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
         }
-        
+
         .reforecast-section {
             padding: 40px;
             background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%);
@@ -337,7 +337,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1 class="title">💎 THE GEMMA</h1>
+                <h1 class="title">THE GEMMA</h1>
                 <p class="subtitle">Premium Performance Dashboard</p>
                 <p class="update-time">Updated April 7, 2026 • YTD 2026 vs Budget & STLY</p>
             </div>
@@ -354,8 +354,7 @@
             <div class="metric-card">
                 <div class="metric-value occupancy">40.5%</div>
                 <div class="metric-label">Average Occupancy CY</div>
-                <div class="metric-change negative">-17.8% vs STLY</div>
-                <div class="metric-change negative small">(49.2% STLY)</div>
+                <div class="metric-change neutral small">49.2% STLY</div>
             </div>
             
             <div class="metric-card">
@@ -366,8 +365,16 @@
             </div>
         </div>
         
+        <div class="stly-section">
+            <h2 class="section-title">Same Time Last Year Comparisons</h2>
+            <div class="chart-container full-width-chart">
+                <h3 class="chart-title">Revenue vs STLY Pacing</h3>
+                <canvas id="revenueChart" class="chart-canvas"></canvas>
+            </div>
+        </div>
+
         <div class="budget-section">
-            <h2 class="section-title">🎯 Budget vs Actual Performance</h2>
+            <h2 class="section-title">Budget vs Actual Performance</h2>
             
             <div class="budget-metrics">
                 <div class="budget-card">
@@ -394,24 +401,13 @@
             </div>
             
             <div class="chart-container">
-                <h3 class="chart-title">📊 Monthly Budget vs Actual Revenue</h3>
+                <h3 class="chart-title">Monthly Budget vs Actual Revenue</h3>
                 <canvas id="budgetChart" class="chart-canvas"></canvas>
             </div>
-        </div>
-        
-        <div class="charts-section">
-            <div class="chart-container full-width-chart">
-                <h3 class="chart-title">📈 Revenue vs STLY Pacing</h3>
-                <canvas id="revenueChart" class="chart-canvas"></canvas>
-            </div>
-        </div>
-        
-        <div class="key-metrics-section">
-            <h2 class="section-title">📊 Key Metrics vs Budget</h2>
-            
-            <div class="key-metrics-grid">
+
+            <div class="key-metrics-grid" style="margin-top: 40px;">
                 <div class="chart-container">
-                    <h3 class="chart-title">💰 Revenue vs Budget</h3>
+                    <h3 class="chart-title">Revenue vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -441,7 +437,7 @@
                 </div>
                 
                 <div class="chart-container">
-                    <h3 class="chart-title">🏨 Occupancy vs Budget</h3>
+                    <h3 class="chart-title">Occupancy vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -449,29 +445,28 @@
                                 <th>Budget</th>
                                 <th>Actual</th>
                                 <th>Variance</th>
-                                <th>%</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="month">Jan</td><td>55.0%</td><td>41.2%</td><td class="negative-variance">-13.8%</td><td class="negative-variance">-25.1%</td></tr>
-                            <tr><td class="month">Feb</td><td>75.0%</td><td>67.0%</td><td class="negative-variance">-8.0%</td><td class="negative-variance">-10.7%</td></tr>
-                            <tr><td class="month">Mar</td><td>85.0%</td><td>88.6%</td><td class="positive-variance">+3.6%</td><td class="positive-variance">+4.2%</td></tr>
-                            <tr><td class="month">Apr</td><td>75.0%</td><td>60.5%</td><td class="negative-variance">-14.5%</td><td class="negative-variance">-19.3%</td></tr>
-                            <tr><td class="month">May</td><td>70.0%</td><td>50.8%</td><td class="negative-variance">-19.2%</td><td class="negative-variance">-27.4%</td></tr>
-                            <tr><td class="month">Jun</td><td>75.0%</td><td>83.3%</td><td class="positive-variance">+8.3%</td><td class="positive-variance">+11.1%</td></tr>
-                            <tr><td class="month">Jul</td><td>80.0%</td><td>38.7%</td><td class="negative-variance">-41.3%</td><td class="negative-variance">-51.6%</td></tr>
-                            <tr><td class="month">Aug</td><td>55.0%</td><td>44.4%</td><td class="negative-variance">-10.6%</td><td class="negative-variance">-19.3%</td></tr>
-                            <tr><td class="month">Sep</td><td>50.0%</td><td>5.0%</td><td class="negative-variance">-45.0%</td><td class="negative-variance">-90.0%</td></tr>
-                            <tr><td class="month">Oct</td><td>50.0%</td><td>0.0%</td><td class="negative-variance">-50.0%</td><td class="negative-variance">-100.0%</td></tr>
-                            <tr><td class="month">Nov</td><td>75.0%</td><td>4.2%</td><td class="negative-variance">-70.8%</td><td class="negative-variance">-94.4%</td></tr>
-                            <tr><td class="month">Dec</td><td>70.0%</td><td>5.6%</td><td class="negative-variance">-64.4%</td><td class="negative-variance">-92.0%</td></tr>
-                            <tr style="background: #f8f9fa; font-weight: bold;"><td>Avg</td><td>67.9%</td><td>40.8%</td><td class="negative-variance">-27.1%</td><td class="negative-variance">-39.9%</td></tr>
+                            <tr><td class="month">Jan</td><td>55.0%</td><td>41.2%</td><td class="negative-variance">-13.8%</td></tr>
+                            <tr><td class="month">Feb</td><td>75.0%</td><td>67.0%</td><td class="negative-variance">-8.0%</td></tr>
+                            <tr><td class="month">Mar</td><td>85.0%</td><td>88.6%</td><td class="positive-variance">+3.6%</td></tr>
+                            <tr><td class="month">Apr</td><td>75.0%</td><td>60.5%</td><td class="negative-variance">-14.5%</td></tr>
+                            <tr><td class="month">May</td><td>70.0%</td><td>50.8%</td><td class="negative-variance">-19.2%</td></tr>
+                            <tr><td class="month">Jun</td><td>75.0%</td><td>83.3%</td><td class="positive-variance">+8.3%</td></tr>
+                            <tr><td class="month">Jul</td><td>80.0%</td><td>38.7%</td><td class="negative-variance">-41.3%</td></tr>
+                            <tr><td class="month">Aug</td><td>55.0%</td><td>44.4%</td><td class="negative-variance">-10.6%</td></tr>
+                            <tr><td class="month">Sep</td><td>50.0%</td><td>5.0%</td><td class="negative-variance">-45.0%</td></tr>
+                            <tr><td class="month">Oct</td><td>50.0%</td><td>0.0%</td><td class="negative-variance">-50.0%</td></tr>
+                            <tr><td class="month">Nov</td><td>75.0%</td><td>4.2%</td><td class="negative-variance">-70.8%</td></tr>
+                            <tr><td class="month">Dec</td><td>70.0%</td><td>5.6%</td><td class="negative-variance">-64.4%</td></tr>
+                            <tr style="background: #f8f9fa; font-weight: bold;"><td>Avg</td><td>67.9%</td><td>40.8%</td><td class="negative-variance">-27.1%</td></tr>
                         </tbody>
                     </table>
                 </div>
                 
                 <div class="chart-container">
-                    <h3 class="chart-title">💰 ADR vs Budget</h3>
+                    <h3 class="chart-title">ADR vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -503,11 +498,11 @@
         </div>
 
         <div class="reforecast-section">
-            <h2 class="section-title">📊 Budget vs Reforecast Analysis</h2>
+            <h2 class="section-title">Budget vs Reforecast Analysis</h2>
             
             <div class="key-metrics-grid">
                 <div class="chart-container">
-                    <h3 class="chart-title">💰 Revenue: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
+                    <h3 class="chart-title">Revenue: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -536,7 +531,7 @@
                 </div>
                 
                 <div class="chart-container">
-                    <h3 class="chart-title">🏨 Occupancy: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
+                    <h3 class="chart-title">Occupancy: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -544,28 +539,27 @@
                                 <th>Budget</th>
                                 <th>Actual/Reforecast</th>
                                 <th>Variance</th>
-                                <th>%</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="month">Jan</td><td>55.0%</td><td>41.2% (Actual)</td><td class="negative-variance">-13.8%</td><td class="negative-variance">-25.1%</td></tr>
-                            <tr><td class="month">Feb</td><td>75.0%</td><td>67.0% (Actual)</td><td class="negative-variance">-8.0%</td><td class="negative-variance">-10.7%</td></tr>
-                            <tr><td class="month">Mar</td><td>85.0%</td><td>88.6% (Actual)</td><td class="positive-variance">+3.6%</td><td class="positive-variance">+4.2%</td></tr>
-                            <tr><td class="month">Apr</td><td>75.0%</td><td>75.0% (Reforecast)</td><td class="neutral-variance">0.0%</td><td class="neutral-variance">0.0%</td></tr>
-                            <tr><td class="month">May</td><td>70.0%</td><td>70.0% (Reforecast)</td><td class="neutral-variance">0.0%</td><td class="neutral-variance">0.0%</td></tr>
-                            <tr><td class="month">Jun</td><td>75.0%</td><td>80.0% (Reforecast)</td><td class="positive-variance">+5.0%</td><td class="positive-variance">+6.7%</td></tr>
-                            <tr><td class="month">Jul</td><td>80.0%</td><td>80.0% (Reforecast)</td><td class="neutral-variance">0.0%</td><td class="neutral-variance">0.0%</td></tr>
-                            <tr><td class="month">Aug</td><td>55.0%</td><td>60.0% (Reforecast)</td><td class="positive-variance">+5.0%</td><td class="positive-variance">+9.1%</td></tr>
-                            <tr><td class="month">Sep</td><td>50.0%</td><td>50.0% (Reforecast)</td><td class="neutral-variance">0.0%</td><td class="neutral-variance">0.0%</td></tr>
-                            <tr><td class="month">Oct</td><td>50.0%</td><td>55.0% (Reforecast)</td><td class="positive-variance">+5.0%</td><td class="positive-variance">+10.0%</td></tr>
-                            <tr><td class="month">Nov</td><td>75.0%</td><td>65.0% (Reforecast)</td><td class="negative-variance">-10.0%</td><td class="negative-variance">-13.3%</td></tr>
-                            <tr><td class="month">Dec</td><td>70.0%</td><td>65.0% (Reforecast)</td><td class="negative-variance">-5.0%</td><td class="negative-variance">-7.1%</td></tr>
+                            <tr><td class="month">Jan</td><td>55.0%</td><td>41.2% (Actual)</td><td class="negative-variance">-13.8%</td></tr>
+                            <tr><td class="month">Feb</td><td>75.0%</td><td>67.0% (Actual)</td><td class="negative-variance">-8.0%</td></tr>
+                            <tr><td class="month">Mar</td><td>85.0%</td><td>88.6% (Actual)</td><td class="positive-variance">+3.6%</td></tr>
+                            <tr><td class="month">Apr</td><td>75.0%</td><td>75.0% (Reforecast)</td><td class="neutral-variance">0.0%</td></tr>
+                            <tr><td class="month">May</td><td>70.0%</td><td>70.0% (Reforecast)</td><td class="neutral-variance">0.0%</td></tr>
+                            <tr><td class="month">Jun</td><td>75.0%</td><td>80.0% (Reforecast)</td><td class="positive-variance">+5.0%</td></tr>
+                            <tr><td class="month">Jul</td><td>80.0%</td><td>80.0% (Reforecast)</td><td class="neutral-variance">0.0%</td></tr>
+                            <tr><td class="month">Aug</td><td>55.0%</td><td>60.0% (Reforecast)</td><td class="positive-variance">+5.0%</td></tr>
+<tr><td class="month">Sep</td><td>50.0%</td><td>50.0% (Reforecast)</td><td class="neutral-variance">0.0%</td></tr>
+                            <tr><td class="month">Oct</td><td>50.0%</td><td>55.0% (Reforecast)</td><td class="positive-variance">+5.0%</td></tr>
+                            <tr><td class="month">Nov</td><td>75.0%</td><td>65.0% (Reforecast)</td><td class="negative-variance">-10.0%</td></tr>
+                            <tr><td class="month">Dec</td><td>70.0%</td><td>65.0% (Reforecast)</td><td class="negative-variance">-5.0%</td></tr>
                         </tbody>
                     </table>
                 </div>
                 
                 <div class="chart-container">
-                    <h3 class="chart-title">💰 ADR: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
+                    <h3 class="chart-title">ADR: Q1 Actuals + Q2-Q4 Reforecast vs Budget</h3>
                     <table class="metrics-table">
                         <thead>
                             <tr>
@@ -596,11 +590,11 @@
         </div>
 
         <div class="insights-section">
-            <h2 class="insights-title">🔍 Strategic Analysis</h2>
+            <h2 class="insights-title">Strategic Analysis</h2>
             
             <div class="insights-grid">
                 <div class="insight-card danger">
-                    <div class="insight-icon">⚠️</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">Budget Gap Challenge</div>
                     <div class="insight-text">
                         $773K behind budget (-43.9%) indicates aggressive initial projections. 
@@ -609,7 +603,7 @@
                 </div>
                 
                 <div class="insight-card">
-                    <div class="insight-icon">🎯</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">STLY Pacing Strong</div>
                     <div class="insight-text">
                         Nearly even with STLY (-0.2%) shows strong operational execution. 
@@ -618,7 +612,7 @@
                 </div>
                 
                 <div class="insight-card info">
-                    <div class="insight-icon">💰</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">Premium Strategy Working</div>
                     <div class="insight-text">
                         ADR up 2.1% and ANR up 14.5% vs STLY demonstrates successful premium positioning. 
@@ -627,7 +621,7 @@
                 </div>
                 
                 <div class="insight-card warning">
-                    <div class="insight-icon">📉</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">Q2-Q4 Risk</div>
                     <div class="insight-text">
                         Budget assumes strong summer/fall performance not materializing in actuals. 
@@ -636,7 +630,7 @@
                 </div>
                 
                 <div class="insight-card">
-                    <div class="insight-icon">🌟</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">March Success Model</div>
                     <div class="insight-text">
                         March delivered 98.2% of budget ($219K vs $223K) with strong occupancy. 
@@ -645,7 +639,7 @@
                 </div>
                 
                 <div class="insight-card warning">
-                    <div class="insight-icon">🎯</div>
+                    <div class="insight-icon"></div>
                     <div class="insight-title">Realistic Expectations</div>
                     <div class="insight-text">
                         Budget revision needed based on STLY performance patterns. 
