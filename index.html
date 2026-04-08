@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gemma - Performance Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         * {
             margin: 0;
@@ -271,6 +272,10 @@
         .chart-canvas {
             height: 300px !important;
         }
+
+        #revenueChart, #budgetChart {
+            height: 480px !important;
+        }
         
         .full-width-chart {
             grid-column: 1 / -1;
@@ -401,7 +406,7 @@
             </div>
             
             <div class="chart-container">
-                <h3 class="chart-title">Monthly Budget vs Actual Revenue</h3>
+                <h3 class="chart-title">Monthly Budget vs On the Books</h3>
                 <canvas id="budgetChart" class="chart-canvas"></canvas>
             </div>
 
@@ -651,91 +656,132 @@
     </div>
 
     <script>
-        // Budget vs Actual Chart
+        // Budget vs On the Books Chart
         const budgetCtx = document.getElementById('budgetChart').getContext('2d');
         const budgetChart = new Chart(budgetCtx, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
                     label: '2026 Budget',
                     data: [117304, 144396, 223343, 172710, 147452, 168210, 210205, 95366, 71900, 80497, 146900, 183929],
                     backgroundColor: 'rgba(108, 117, 125, 0.7)',
                     borderColor: '#6c757d',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    borderRadius: 3
                 }, {
-                    label: '2026 Actual',
+                    label: '2026 On the Books',
                     data: [81528, 108047, 219379, 133831, 109267, 153724, 88984, 51766, 5042, 0, 16401, 20803],
-                    backgroundColor: '#28a745',
+                    backgroundColor: 'rgba(40, 167, 69, 0.75)',
                     borderColor: '#1e7e34',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    borderRadius: 3
                 }]
             },
             options: {
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: true,
                         position: 'top'
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        formatter: function(value) {
+                            if (value === 0) return '';
+                            return '$' + (value / 1000).toFixed(0) + 'K';
+                        },
+                        font: { size: 11 },
+                        color: function(context) {
+                            return context.datasetIndex === 0 ? '#6c757d' : '#28a745';
+                        }
                     }
                 },
                 scales: {
-                    y: {
+                    x: {
                         beginAtZero: true,
                         ticks: {
                             callback: function(value) {
-                                return '$' + (value/1000).toFixed(0) + 'K';
+                                return '$' + (value / 1000).toFixed(0) + 'K';
                             }
                         }
+                    },
+                    y: {
+                        ticks: {
+                            font: { size: 12 }
+                        }
                     }
+                },
+                layout: {
+                    padding: { right: 60 }
                 }
             }
         });
 
-        // Revenue Chart - 2026 vs STLY
+        // Revenue Chart - 2026 vs STLY (horizontal bar)
         const revenueCtx = document.getElementById('revenueChart').getContext('2d');
         const revenueChart = new Chart(revenueCtx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
                     label: '2026 Revenue',
                     data: [81528, 108047, 219379, 133831, 109267, 153724, 88984, 51766, 5042, 0, 16401, 20803],
+                    backgroundColor: 'rgba(40, 167, 69, 0.75)',
                     borderColor: '#28a745',
-                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4
+                    borderWidth: 1,
+                    borderRadius: 3
                 }, {
                     label: 'STLY Revenue',
                     data: [45632, 125067, 215979, 150248, 108933, 120449, 131577, 13022, 12592, 4178, 41074, 22475],
+                    backgroundColor: 'rgba(0, 123, 255, 0.55)',
                     borderColor: '#007bff',
-                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
-                    borderWidth: 3,
-                    fill: false,
-                    tension: 0.4,
-                    borderDash: [5, 5]
+                    borderWidth: 1,
+                    borderRadius: 3
                 }]
             },
             options: {
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: true,
                         position: 'top'
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        formatter: function(value) {
+                            if (value === 0) return '';
+                            return '$' + (value / 1000).toFixed(0) + 'K';
+                        },
+                        font: { size: 11 },
+                        color: function(context) {
+                            return context.datasetIndex === 0 ? '#28a745' : '#007bff';
+                        }
                     }
                 },
                 scales: {
-                    y: {
+                    x: {
                         beginAtZero: true,
                         ticks: {
                             callback: function(value) {
-                                return '$' + (value/1000).toFixed(0) + 'K';
+                                return '$' + (value / 1000).toFixed(0) + 'K';
                             }
                         }
+                    },
+                    y: {
+                        ticks: {
+                            font: { size: 12 }
+                        }
                     }
+                },
+                layout: {
+                    padding: { right: 60 }
                 }
             }
         });
